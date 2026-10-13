@@ -12,24 +12,31 @@ import { UserRole } from '../../../models/roles.model';
   templateUrl: './login.html'
 })
 export class LoginComponent {
-  email: string = 'usuario@pasteleria.com';
+  email: string = '';
   selectedRole: UserRole = 'Administrador';
+  errorMessage: string = '';
 
   constructor(private authService: AuthService, private router: Router) {}
 
   onLogin(): void {
-    this.authService.setRole(this.selectedRole);
+    this.errorMessage = '';
 
-    switch (this.selectedRole) {
-      case 'Administrador':
-        this.router.navigate(['/admin/dashboard']);
-        break;
-      case 'Pastelero':
-        this.router.navigate(['/pastelero/produccion']);
-        break;
-      case 'Cliente':
-        this.router.navigate(['/cliente/catalogo']);
-        break;
+    const exito = this.authService.login(this.email, this.selectedRole);
+
+    if (exito) {
+      switch (this.selectedRole) {
+        case 'Administrador':
+          this.router.navigate(['/admin/dashboard']);
+          break;
+        case 'Pastelero':
+          this.router.navigate(['/pastelero/produccion']);
+          break;
+        case 'Cliente':
+          this.router.navigate(['/cliente/catalogo']);
+          break;
+      }
+    } else {
+      this.errorMessage = `El correo "${this.email}" no pertenece al rol de ${this.selectedRole} o no está registrado.`;
     }
   }
 }
