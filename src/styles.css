@@ -1,0 +1,13 @@
+@import "bootstrap/dist/css/bootstrap.min.css";
+
+
+:root {
+  --pasteleria-primary: #d63384;
+  --pasteleria-bg: #fff5f8;
+  --pasteleria-accent: #6f42c1;
+}
+
+body {
+  background-color: var(--pasteleria-bg);
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}

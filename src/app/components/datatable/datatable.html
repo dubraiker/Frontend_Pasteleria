@@ -1,0 +1,31 @@
+<div class="card shadow-sm p-3 mb-4 bg-white rounded">
+  <div class="d-flex justify-content-between align-items-center mb-3">
+    <h5 class="m-0 text-secondary">Registros</h5>
+    <input
+      type="text"
+      class="form-control w-25"
+      placeholder="🔍 Buscar..."
+      [(ngModel)]="searchTerm"
+    />
+  </div>
+
+  <div class="table-responsive">
+    <table class="table table-hover align-middle">
+      <thead class="table-dark">
+        <tr>
+          <th *ngFor="let col of columns">{{ col.header }}</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let row of filteredData">
+          <td *ngFor="let col of columns">{{ row[col.field] }}</td>
+        </tr>
+        <tr *ngIf="filteredData.length === 0">
+          <td [attr.colspan]="columns.length" class="text-center text-muted py-3">
+            No se encontraron resultados
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>

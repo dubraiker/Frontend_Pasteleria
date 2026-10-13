@@ -1,0 +1,34 @@
+<nav class="navbar navbar-expand-lg navbar-dark bg-danger px-4 shadow-sm">
+  <a class="navbar-brand fw-bold" routerLink="/">🎂 Pastelería App</a>
+  <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+
+  <div class="collapse navbar-collapse" id="navbarNav">
+    <!-- Menú Administrador -->
+    <ul class="navbar-nav me-auto mb-2 mb-lg-0" *ngIf="currentRole === 'Administrador'">
+      <li class="nav-item"><a class="nav-link" routerLink="/admin/dashboard" routerLinkActive="active">📊 Dashboard</a></li>
+      <li class="nav-item"><a class="nav-link" routerLink="/admin/usuarios" routerLinkActive="active">👥 Usuarios</a></li>
+      <li class="nav-item"><a class="nav-link" routerLink="/admin/catalogo" routerLinkActive="active">📦 Catálogo</a></li>
+    </ul>
+
+    <!-- Menú Pastelero -->
+    <ul class="navbar-nav me-auto mb-2 mb-lg-0" *ngIf="currentRole === 'Pastelero'">
+      <li class="nav-item"><a class="nav-link" routerLink="/pastelero/produccion" routerLinkActive="active">👩‍🍳 Producción</a></li>
+      <li class="nav-item"><a class="nav-link" routerLink="/pastelero/inventario" routerLinkActive="active">🍫 Inventario</a></li>
+      <li class="nav-item"><a class="nav-link" routerLink="/pastelero/recetas" routerLinkActive="active">📖 Recetario</a></li>
+    </ul>
+
+    <!-- Menú Cliente -->
+    <ul class="navbar-nav me-auto mb-2 mb-lg-0" *ngIf="currentRole === 'Cliente'">
+      <li class="nav-item"><a class="nav-link" routerLink="/cliente/catalogo" routerLinkActive="active">🍰 Productos</a></li>
+      <li class="nav-item"><a class="nav-link" routerLink="/cliente/pedidos" routerLinkActive="active">🛒 Mis Pedidos</a></li>
+      <li class="nav-item"><a class="nav-link" routerLink="/cliente/perfil" routerLinkActive="active">👤 Mi Perfil</a></li>
+    </ul>
+
+    <div class="d-flex align-items-center gap-3">
+      <span class="badge bg-light text-dark fs-6">{{ currentRole }}</span>
+      <button class="btn btn-outline-light btn-sm" (click)="logout()">Cerrar Sesión</button>
+    </div>
+  </div>
+</nav>
