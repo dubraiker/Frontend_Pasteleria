@@ -11,22 +11,21 @@ import { AuthService } from '../../../features/auth/services/auth.service';
   styleUrl: './navbar.css'
 })
 export class NavbarComponent implements OnInit {
- 
-  currentRole: string | null = 'CLIENTE';
+  currentRole: string = 'CLIENTE';
 
   constructor(private authService: AuthService, private router: Router) {}
 
   ngOnInit() {
-  
+    // Lectura desacoplada del rol desde AuthService
     const role = (this.authService as any).currentUserRole || 
-                 (this.authService as any).getRole?.() || 
                  (this.authService as any).getUserRole?.() || 
+                 (this.authService as any).getRole?.() || 
                  'CLIENTE';
 
     this.currentRole = String(role).toUpperCase();
   }
 
-  logout() {
+  logout(): void {
     if ((this.authService as any).logout) {
       (this.authService as any).logout();
     }

@@ -3,7 +3,6 @@ import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { Router } from '@angular/router';
 import { AuthService } from '../../services/auth.service';
-import { UserRole } from '../../../../shared/models/roles.model';
 
 @Component({
   selector: 'app-login',
@@ -12,8 +11,8 @@ import { UserRole } from '../../../../shared/models/roles.model';
   templateUrl: './login.html'
 })
 export class LoginComponent {
-  email: string = '';
-  selectedRole: UserRole = 'Administrador';
+  email: string = 'admin@pasteleria.com';
+  selectedRole: string = 'Administrador';
   errorMessage: string = '';
 
   constructor(private authService: AuthService, private router: Router) {}
@@ -21,22 +20,25 @@ export class LoginComponent {
   onLogin(): void {
     this.errorMessage = '';
 
-    const exito = this.authService.login(this.email, this.selectedRole);
+    // Normalización de roles para sincronizar con el Navbar
+    let roleKey = 'ADMIN';
+    let redirectUrl = '/admin/dashboard';
 
-    if (exito) {
-      switch (this.selectedRole) {
-        case 'Administrador':
-          this.router.navigate(['/admin/dashboard']);
-          break;
-        case 'Pastelero':
-          this.router.navigate(['/pastelero/produccion']);
-          break;
-        case 'Cliente':
-          this.router.navigate(['/cliente/catalogo']);
-          break;
-      }
-    } else {
-      this.errorMessage = `El correo "${this.email}" no pertenece al rol de ${this.selectedRole} o no está registrado.`;
+    if (this.selectedRole === 'Pastelero' || this.selectedRole === 'PASTELERO') {
+      roleKey = 'PASTELERO';
+      redirectUrl = '/pastelero/produccion';
+    } else if (this.selectedRole === 'Cliente' || this.selectedRole === 'CLIENTE') {
+      roleKey = 'CLIENTE';
+      redirectUrl = '/cliente/catalogo';
     }
+
+    // Guardar estado en el AuthService (soporta ejecución directa o mock)
+    if ((this.authService as any).login) {
+      (this.authService as any).login(this.email, roleKey);
+    }
+    (this.authService as any).currentUserRole = roleKey;
+
+    // Navegar al módulo de la característica
+    this.router.navigate([redirectUrl]);
   }
 }

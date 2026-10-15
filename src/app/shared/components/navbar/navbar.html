@@ -4,22 +4,22 @@
   </div>
 
   <ul class="navbar-nav">
-    <!-- Módulos para ADMINISTRADOR (3 features) -->
-    <ng-container *ngIf="currentRole === 'ADMIN' || currentRole === 'ADMINISTRADOR' || currentRole === 'admin'">
+    <!-- Módulos para ADMINISTRADOR (3 características) -->
+    <ng-container *ngIf="currentRole === 'ADMIN' || currentRole === 'ADMINISTRADOR'">
       <li><a routerLink="/admin/dashboard" routerLinkActive="active">📊 Dashboard</a></li>
       <li><a routerLink="/admin/usuarios" routerLinkActive="active">👥 Usuarios</a></li>
       <li><a routerLink="/admin/catalogo" routerLinkActive="active">🎂 Catálogo</a></li>
     </ng-container>
 
-    <!-- Módulos para PASTELERO (3 features) -->
-    <ng-container *ngIf="currentRole === 'PASTELERO' || currentRole === 'pastelero'">
+    <!-- Módulos para PASTELERO (3 características) -->
+    <ng-container *ngIf="currentRole === 'PASTELERO'">
       <li><a routerLink="/pastelero/produccion" routerLinkActive="active">👨‍🍳 Producción</a></li>
       <li><a routerLink="/pastelero/inventario" routerLinkActive="active">📦 Inventario</a></li>
       <li><a routerLink="/pastelero/recetas" routerLinkActive="active">📖 Recetas</a></li>
     </ng-container>
 
-    <!-- Módulos para CLIENTE (3 features) -->
-    <ng-container *ngIf="currentRole === 'CLIENTE' || currentRole === 'cliente'">
+    <!-- Módulos para CLIENTE (3 características) -->
+    <ng-container *ngIf="currentRole === 'CLIENTE'">
       <li><a routerLink="/cliente/catalogo" routerLinkActive="active">🎂 Catálogo</a></li>
       <li><a routerLink="/cliente/pedidos" routerLinkActive="active">🛍️ Mis Pedidos</a></li>
       <li><a routerLink="/cliente/perfil" routerLinkActive="active">👤 Mi Perfil</a></li>
