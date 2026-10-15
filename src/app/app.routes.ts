@@ -1,53 +1,68 @@
 import { Routes } from '@angular/router';
 
 export const routes: Routes = [
-  { path: '', redirectTo: 'login', pathMatch: 'full' },
-  { 
-    path: 'login', 
-    loadComponent: () => import('./pages/auth/login/login').then(m => m.LoginComponent) 
+  
+  {
+    path: '',
+    redirectTo: 'auth/login',
+    pathMatch: 'full'
   },
 
-  // Rutas Administrador
-  { 
-    path: 'admin/dashboard', 
-    loadComponent: () => import('./pages/admin/dashboard/dashboard').then(m => m.DashboardComponent) 
+ 
+  {
+    path: 'auth/login',
+    loadComponent: () => import('./features/auth/pages/login/login').then(m => m.LoginComponent)
   },
-  { 
-    path: 'admin/usuarios', 
-    loadComponent: () => import('./pages/admin/usuarios/usuarios').then(m => m.UsuariosComponent) 
-  },
-  { 
-    path: 'admin/catalogo', 
-    loadComponent: () => import('./pages/admin/catalogo/catalogo').then(m => m.CatalogoComponent) 
+  {
+    path: 'auth/registro',
+    loadComponent: () => import('./features/auth/pages/registro/registro.component').then(m => m.RegistroComponent)
   },
 
-  // Rutas Pastelero
-  { 
-    path: 'pastelero/produccion', 
-    loadComponent: () => import('./pages/pastelero/produccion/produccion').then(m => m.ProduccionComponent) 
+ 
+  {
+    path: 'admin/dashboard',
+    loadComponent: () => import('./features/admin/pages/dashboard/dashboard').then(m => m.DashboardComponent)
   },
-  { 
-    path: 'pastelero/inventario', 
-    loadComponent: () => import('./pages/pastelero/inventario/inventario').then(m => m.InventarioComponent) 
+  {
+    path: 'admin/usuarios',
+    loadComponent: () => import('./features/admin/pages/usuarios/usuarios').then(m => m.UsuariosComponent)
   },
-  { 
-    path: 'pastelero/recetas', 
-    loadComponent: () => import('./pages/pastelero/recetas/recetas').then(m => m.RecetasComponent) 
-  },
-
-  // Rutas Cliente
-  { 
-    path: 'cliente/catalogo', 
-    loadComponent: () => import('./pages/cliente/catalogo/catalogo').then(m => m.CatalogoComponent) 
-  },
-  { 
-    path: 'cliente/pedidos', 
-    loadComponent: () => import('./pages/cliente/pedidos/pedidos').then(m => m.PedidosComponent) 
-  },
-  { 
-    path: 'cliente/perfil', 
-    loadComponent: () => import('./pages/cliente/perfil/perfil').then(m => m.PerfilComponent) 
+  {
+    path: 'admin/catalogo',
+    loadComponent: () => import('./features/admin/pages/catalogo/catalogo').then(m => m.CatalogoComponent)
   },
 
-  { path: '**', redirectTo: 'login' }
+
+  {
+    path: 'pastelero/produccion',
+    loadComponent: () => import('./features/pastelero/pages/produccion/produccion').then(m => m.ProduccionComponent)
+  },
+  {
+    path: 'pastelero/inventario',
+    loadComponent: () => import('./features/pastelero/pages/inventario/inventario').then(m => m.InventarioComponent)
+  },
+  {
+    path: 'pastelero/recetas',
+    loadComponent: () => import('./features/pastelero/pages/recetas/recetas').then(m => m.RecetasComponent)
+  },
+
+
+  {
+    path: 'cliente/catalogo',
+    loadComponent: () => import('./features/cliente/pages/catalogo/catalogo').then(m => m.CatalogoComponent)
+  },
+  {
+    path: 'cliente/pedidos',
+    loadComponent: () => import('./features/cliente/pages/pedidos/pedidos').then(m => m.PedidosComponent)
+  },
+  {
+    path: 'cliente/perfil',
+    loadComponent: () => import('./features/cliente/pages/perfil/perfil').then(m => m.PerfilComponent)
+  },
+
+  
+  {
+    path: '**',
+    redirectTo: 'auth/login'
+  }
 ];

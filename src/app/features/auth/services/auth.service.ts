@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
-import { UserRole } from '../../models/roles.model';
-import { MOCK_USUARIOS } from '../../data/mock-data';
+import { UserRole } from '../../../shared/models/roles.model';
+import { MOCK_USUARIOS } from '../../../data/mock-data';
 
 @Injectable({
   providedIn: 'root'

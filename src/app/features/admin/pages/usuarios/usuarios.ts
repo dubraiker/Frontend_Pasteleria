@@ -1,8 +1,8 @@
 import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { NavbarComponent } from '../../../components/navbar/navbar';
-import { DatatableComponent } from '../../../components/datatable/datatable';
-import { MOCK_USUARIOS } from '../../../data/mock-data';
+import { NavbarComponent } from '../../../../shared/components/navbar/navbar';
+import { DatatableComponent } from '../../../../shared/components/datatable/datatable';
+import { MOCK_USUARIOS } from '../../../../data/mock-data';
 
 @Component({
   selector: 'app-usuarios',
